@@ -103,4 +103,26 @@ export function validateLogout(payload) {
   return validateWithSchema(payload, logoutSchema)
 }
 
-// Compare schemas are added in Part 3
+const SUPPORTED_LANGUAGES = ['Python', 'JavaScript', 'Java', 'C#', 'C++', 'SQL']
+
+const compareSchema = z.strictObject({
+  langA: z
+    .string({ error: 'langA is required.' })
+    .refine((v) => SUPPORTED_LANGUAGES.includes(v), {
+      error: `langA must be one of: ${SUPPORTED_LANGUAGES.join(', ')}.`,
+    }),
+  langB: z
+    .string({ error: 'langB is required.' })
+    .refine((v) => SUPPORTED_LANGUAGES.includes(v), {
+      error: `langB must be one of: ${SUPPORTED_LANGUAGES.join(', ')}.`,
+    }),
+  query: z
+    .string({ error: 'query is required.' })
+    .trim()
+    .min(1, { error: 'query is required.' })
+    .max(500, { error: 'query must be 500 characters or fewer.' }),
+})
+
+export function validateCompare(payload) {
+  return validateWithSchema(payload, compareSchema)
+}
