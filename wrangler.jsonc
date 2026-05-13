@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "syntaxbridge-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-03-08",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "syntaxbridge_db",
+      "database_id": "5a7c5a8b-214c-4876-bdf3-b00e4e109516",
+      "migrations_dir": "./src/data/migrations",
+    },
+  ],
+  "ratelimits": [
+    {
+      "name": "AUTH_LIMITER",
+      "namespace_id": "1001",
+      "simple": {
+        "limit": 10,
+        "period": 60,
+      },
+    },
+  ],
+}
