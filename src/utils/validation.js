@@ -126,3 +126,15 @@ const compareSchema = z.strictObject({
 export function validateCompare(payload) {
   return validateWithSchema(payload, compareSchema)
 }
+
+const saveComparisonSchema = z.strictObject({
+  langA: z.string({ error: 'langA is required.' }).min(1),
+  langB: z.string({ error: 'langB is required.' }).min(1),
+  query: z.string({ error: 'query is required.' }).min(1).max(500),
+  codeA: z.string({ error: 'codeA is required.' }).min(1),
+  codeB: z.string({ error: 'codeB is required.' }).min(1),
+})
+
+export function validateSaveComparison(payload) {
+  return validateWithSchema(payload, saveComparisonSchema)
+}
