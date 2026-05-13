@@ -19,3 +19,6 @@ Pass the `CloudflareBindings` as generics when instantiation `Hono`:
 // src/index.ts
 const app = new Hono<{ Bindings: CloudflareBindings }>()
 ```
+
+## Live API
+https://syntaxbridge-api.paymate-vue.workers.dev
